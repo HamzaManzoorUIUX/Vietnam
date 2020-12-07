@@ -11,10 +11,10 @@ export default () => {
     return <><div className="bgimgcovermarketPlace">
         {//Top Section
         }
-        <div className="pd6p navback-color" >
+        <div className="pd6p navback-color zIndex3" >
             <Nav hasback={true} />
         </div>
-        <div className="pd6p">
+        <div className="pd6p zIndex3">
             <div className="pb-8p">
                 <h1 className="headtext">Marketplace</h1>
                 <h5 className="headtextchild mt-3 ">Home/Marketplace</h5>

@@ -15,7 +15,7 @@ import PropertyDetails from './pagse/PropertyDetails'
 function App() {
   return (
     <div className="App">
-     <MarketPlace/>
+     <Blogs/>
     </div>
   );
 }
