@@ -28,18 +28,29 @@ export default () => {
             <div className="col-md-8">
 
                 <div className="mt-5 pb-5 ">
-                    <div className="revcardss mt-5">
-                        <News img={newsimg1} desig="Tony Lee" subdesig="Coffee, Uncategorized" title="Chemex coffee for two people" date="January 23, 2017" />
-                        <News img={newsimg2}  desig="Admin" subdesig="Coffee, Health & Care, Uncategorized" title="Reduce Unwanted Wrinkles" date="February 23, 2018" />
-                        <News img={newsimg3} desig="Admin" subdesig="News, Uncategorized" title="Excited news about arrival fashion." date="January 23, 2017" />
-                        <News img={newsimg1} desig="Tony Lee" subdesig="Coffee, Uncategorized" title="Chemex coffee for two people" date="January 23, 2017" />
-                        <News img={newsimg2} desig="Admin" subdesig="Coffee, Health & Care, Uncategorized" title="Reduce Unwanted Wrinkles" date="February 23, 2018" />
-                        <News img={newsimg3} desig="Admin" subdesig="News, Uncategorized" title="Excited news about arrival fashion." date="January 23, 2017" />
-
+                    <div className="row mt-5">
+                        <div className='col-12 col-md-6 '>
+                            <News img={newsimg1} desig="Tony Lee" subdesig="Coffee, Uncategorized" title="Chemex coffee for two people" date="January 23, 2017" />
+                        </div>
+                        <div className='col-12 col-md-6 '>
+                            <News img={newsimg2} desig="Admin" subdesig="Coffee, Health & Care, Uncategorized" title="Reduce Unwanted Wrinkles" date="February 23, 2018" />
+                        </div>
+                        <div className='col-12 col-md-6 '>
+                            <News img={newsimg3} desig="Admin" subdesig="News, Uncategorized" title="Excited news about arrival fashion." date="January 23, 2017" />
+                        </div>
+                        <div className='col-12 col-md-6 '>
+                            <News img={newsimg1} desig="Tony Lee" subdesig="Coffee, Uncategorized" title="Chemex coffee for two people" date="January 23, 2017" />
+                        </div>
+                        <div className='col-12 col-md-6 '>
+                            <News img={newsimg2} desig="Admin" subdesig="Coffee, Health & Care, Uncategorized" title="Reduce Unwanted Wrinkles" date="February 23, 2018" />
+                        </div>
+                        <div className='col-12 col-md-6 '>
+                            <News img={newsimg3} desig="Admin" subdesig="News, Uncategorized" title="Excited news about arrival fashion." date="January 23, 2017" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="ml-n5 col-md-4 pt-5">
+            <div className="col-md-4 pt-5">
                 <div className="p-4 border-simple revcardd">
                     <Heading5 classes="form-head-main-center" title="Search Blogs" />
                     <input className="form-control" placeholder="Search" />
