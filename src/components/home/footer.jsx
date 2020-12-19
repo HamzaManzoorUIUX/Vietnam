@@ -4,7 +4,10 @@ import {ImHome} from 'react-icons/im'
 import {FaFacebookSquare,FaTwitterSquare,FaInstagramSquare} from 'react-icons/fa';
 import {BiPaperPlane} from 'react-icons/bi';
 const footer=() => {
-    return (<div className="footer-root flex-row">
+    return (
+    <>
+    <div className="pd6p mt-5 pt-5">
+    <div className="footer-root flex-row">
         <div className="footer-inner flex-col max-width-446 txt-left">
             <img src={logo} className="logo-footer" alt='img' />
             <p className="activty-lbl-cst-name-light mt-3">We’re reimagining how you buy, sell and rent. It’s now easier to get into a place you love. So let’s do this, together.</p>
@@ -39,6 +42,23 @@ CA, USA</a>
             <button className="btn btn-info my-3 my-md-0 ml-md-3"><BiPaperPlane/></button>
             </div>
         </div>
-    </div>)
+    </div>
+    </div>
+    <div className='pd6p d-flex flex-column flex-md-row justify-content-between align-items-center bg-myDanger py-3 text-white'>
+    <div>
+        &copy; 2020 VietQ. All Rights Reserved
+    </div>
+    <div className='d-flex mt-3 mt-md-0'>
+        <div className='mr-2'>
+        Privacy Policy
+        </div>
+        |
+        <div className='ml-2'>
+            Terms of Services
+        </div>
+    </div>
+        </div>
+        </>
+    )
 }
 export default footer;

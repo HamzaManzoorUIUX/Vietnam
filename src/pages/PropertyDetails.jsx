@@ -1,6 +1,6 @@
 import React from 'react';
 import PropertyCarosal from "../components/PropertyCarosal";
-import PropertyCard from "../components/PropertyCard";
+import MultiCarosal from '../components/MultiCarosal';
 import Footer from '../components/home/footer'
 import Nav from '../components/navbar'
 import { FaFacebookF } from 'react-icons/fa';
@@ -107,23 +107,11 @@ function PropertyDetails(props) {
                         Related Properties
 </h3>
                     <div>
-                        <div className="row">
-       
-                           {Exclusive.map(x=> 
-                           {
-                               console.log(x,"sssssssss")
-                               return <div className="col-md-4">
-                               <PropertyCard item={x} img={x.images[0]?x.images[0].image:"https://globalimpactnetwork.org/wp-content/themes/globalimpact/images/no-image-found-360x250.png"} title={x.title?x.title:""} location={`${x.address?x.address:""}`} fetures={x.attributes?x.attributes:[]} price={x.price?x.price:""} type={0} />
-                               </div>
-                           }
-                           )}
-                        </div>
+                        <MultiCarosal Exclusive={Exclusive}/>
                     </div>
                 </div>
             </div>
-            <div className="pd6p mt-5 pt-5">
                 <Footer />
-            </div>
         </div>
     );
 }

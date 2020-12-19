@@ -33,13 +33,15 @@ export default function MediaCard(props) {
           title="Contemplative Reptile"
         />
         <CardContent>
-        <Typography gutterBottom className="newsavatar">
+       <div className='d-flex aline-items-center'>
+       <Typography gutterBottom className="newsavatar">
         <Avatar src={props.userImage}/>
        <h5 className="newsavatartitle activty-lbl-cst-name-c2 color-prmry2"> {props.desig}</h5>
          </Typography>
-          <Typography gutterBottom className="revsubdesig activty-lbl-cst-name-c1 color-prmry2 mt-1">
+          <Typography gutterBottom className="revsubdesig activty-lbl-cst-name-c1 color-prmry2 d-flex align-items-center">
             {props.subdesig}
             </Typography>
+       </div>
           <Typography gutterBottom className="revtitle heading-child2-semibold MuiTypography-body1 mt-n2 f1rem">
              {props.title}
             </Typography>   

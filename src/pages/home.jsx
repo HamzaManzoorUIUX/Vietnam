@@ -19,13 +19,19 @@ import News from '../components/home/newscard'
 import Footer from '../components/home/footer';
 import { useSelector, useDispatch } from 'react-redux'
 import { repository } from '../utiles/repository'
-import { setCategories, setBlogs ,setExclusiveProducts} from '../redux/actionMethodes/listings';
+import { setCategories, setBlogs, setExclusiveProducts } from '../redux/actionMethodes/listings';
 import { useHistory } from "react-router-dom";
 import NavBar from '../components/navbar'
 // import _ from 'lodash';
 import LoadingOverlay from 'react-loading-overlay';
-
-const Home= () => {
+import { makeStyles } from '@material-ui/core';
+const useStyles=makeStyles(()=>({
+  inputCity:{
+width:'40%'
+  }
+}))
+const Home = () => {
+  const classes=useStyles();
   const categories = useSelector(x => x.categories);
   const blogs = useSelector(x => x.blogs);
   const exclusive = useSelector(x => x.exclusive);
@@ -33,10 +39,10 @@ const Home= () => {
 
   //0 for city 1 for town
   //big radius small radius
-  let [locationGet, setLocationGet] = useState({location:'',type:0});
+  let [locationGet, setLocationGet] = useState({ location: '', type: 0 });
   let [search, setsearch] = useState("");
-  let [property,setproperty]=useState([]);
-  let [display,setdisplay]=useState(false);
+  let [property, setproperty] = useState([]);
+  let [display, setdisplay] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -59,21 +65,19 @@ const Home= () => {
         }
 
       }
-      if(exclusive.length<=0)
-      {
+      if (exclusive.length <= 0) {
         const { data, status } = await repository.getexclusive().then(x => x).then(x => x);
         if (status === 200) {
           dispatch(setExclusiveProducts(data.response.products));
-      // const ex=  _.sample(data.response.products,3);
-      // console.log(ex,"sds")  
-       setproperty(data.response.products);
+          // const ex=  _.sample(data.response.products,3);
+          // console.log(ex,"sds")  
+          setproperty(data.response.products);
         }
       }
-      else
-      {
-      // const ex=  _.sample(exclusive,3);
-      // console.log(ex,"sds")  
-       setproperty(exclusive);
+      else {
+        // const ex=  _.sample(exclusive,3);
+        // console.log(ex,"sds")  
+        setproperty(exclusive);
       }
       setdisplay(false);
 
@@ -86,13 +90,13 @@ const Home= () => {
     const { data, status } = await repository.geoDecode(24.8605517, 67.0633579).then(x => x).then(x => x);
     if (status === 200) {
       if (data && data.address && data.address.city) {
-        
-        setLocationGet({location:data.address.city,type:0});
+
+        setLocationGet({ location: data.address.city, type: 0 });
       }
       else if (data && data.address && data.address.town) {
 
-        setLocationGet({location:data.address.town,type:1});
-        
+        setLocationGet({ location: data.address.town, type: 1 });
+
       }
       else {
         //show modal
@@ -104,54 +108,66 @@ const Home= () => {
 
   }
 
-  const searchNow=async()=>{
+  const searchNow = async () => {
     setdisplay(true);
 
-    let dataFilter={
-      name:search,
-      city:locationGet.location,
-      latitude:'',
-      longitude:'',
-      type:locationGet.type,
+    let dataFilter = {
+      name: search,
+      city: locationGet.location,
+      latitude: '',
+      longitude: '',
+      type: locationGet.type,
       //category_id:''
     }
-    const {  status ,data} = await repository.productsFilter(dataFilter).then(x => x).then(x => x);
-    if(status===200 && data.status===200 &&  data.success===true)
-    {
-      history.push("/discover", {data:{...dataFilter,latitude:52.5487429714954,longitude:-1.81602098644987},response:data.response});
+    const { status, data } = await repository.productsFilter(dataFilter).then(x => x).then(x => x);
+    if (status === 200 && data.status === 200 && data.success === true) {
+      history.push("/discover", { data: { ...dataFilter, latitude: 52.5487429714954, longitude: -1.81602098644987 }, response: data.response });
     }
     setdisplay(false);
   }
 
   return <LoadingOverlay
-  active={display}
-  spinner
-  text='Loading...'
+    active={display}
+    spinner
+    text='Loading...'
   ><div className="bgimgcover">
-    {//Top Section
-    }
-    <div className="pd6p">
-      <NavBar />
-      <div className="pb-8p">
-        <h1 className="headtext">Explore Vietnam</h1>
-        <h5 className="headtextchild mt-3 ">Let's uncover the best places to eat, drink, and shop nearest to you.</h5>
-        <div className="mt-3 pt-3">
-          <div className="flex-main flx-none flex-mainback pl-4  pd-custm-25">
-            <div className="flex-main flex-width-55 pt-2 pb-2 wd-md100 brdb-737" ><p className="margin-auto font-weight-600">What</p><input value={search} onChange={(e)=>setsearch(e.target.value)} placeholder="For Example Food, Service, Barber, hotel" className="form-control no-border searchBarText" /></div>
-            <div className="flex-main flex-width-22 brdleft brd-cstm-737 pl-5rem hbtn-54 wd-md100 brdb-737 " ><p className="margin-auto font-weight-600">Where</p><input placeholder="Your City" value={locationGet.location} onChange={(e) =>setLocationGet({location:e.target.value,type:0})} className="form-control no-border searchBarText" /><button className="btn" onClick={() =>geoDecode()}><BiCurrentLocation /></button></div>
-            <div className="flex-main flex-width-20 wd-md100 " ><button onClick={() => searchNow()
-            } className="btn btn-info themeBackgroundColor listingbtn w-100 brdleftbtnnone hbtn-54 br-serch-10">Search</button></div>
+      {//Top Section
+      }
+      <div className="pd6p">
+        <NavBar />
+        <div className="pb-8p">
+          <h1 className="headtext">Explore Vietnam</h1>
+          <h5 className="headtextchild mt-3 ">Let's uncover the best places to eat, drink, and shop nearest to you.</h5>
+          <div className="mt-3 pt-3">
+            <div className="flex-main flx-none flex-mainback pl-4  pd-custm-25">
+              <div className="flex-main flex-width-55 pt-2 pb-2 wd-md100 brdb-737" >
+                <p className="margin-auto font-weight-600">
+                  What
+                  </p>
+                  <input value={search} onChange={(e) => setsearch(e.target.value)} placeholder="For Example Food, Service, Barber, hotel" className="form-control no-border searchBarText" />
+                  </div>
+              <div className={`${classes.inputCity} flex-main flex-width-22 brdleft brd-cstm-737 pl-5rem hbtn-54 wd-md100 brdb-737 `}  >
+                <p className="margin-auto font-weight-600">
+                  Where
+                  </p>
+                  <input placeholder="Your City" value={locationGet.location} onChange={(e) => setLocationGet({ location: e.target.value, type: 0 })} className={`form-control no-border searchBarText`} />
+                  <button className="btn" onClick={() => geoDecode()}>
+                    <BiCurrentLocation />
+                    </button>
+                    </div>
+              <div className="flex-main flex-width-20 wd-md100 " ><button onClick={() => searchNow()
+              } className="btn btn-info themeBackgroundColor listingbtn w-100 brdleftbtnnone hbtn-54 br-serch-10">Search</button></div>
+            </div>
           </div>
-        </div>
-        <h5 className="headtextchild mt-5 pt-3 ftsize-17rem">Still looking? here are some suggestions for you</h5>
-        <div className="categoryContainer">
-          {
-            categories.length > 0 ? categories.map((x, i) => <TcCard onClick={() => history.push("/discover")} key={i} img={x.image} title={x.name} />) : <></>
-          }
+          <h5 className="headtextchild mt-5 pt-3 ftsize-17rem">Still looking? here are some suggestions for you</h5>
+          <div className="categoryContainer">
+            {
+              categories.length > 0 ? categories.map((x, i) => <TcCard onClick={() => history.push("/discover")} key={i} img={x.image} title={x.name} />) : <></>
+            }
+          </div>
         </div>
       </div>
     </div>
-  </div>
     {
       //happing Cities
     }
@@ -164,7 +180,7 @@ const Home= () => {
           <div className="col-md-4 mt-3 mt-md-5"><CityBox onClick={searchNow} img={City1} title="Ho Chi Minh" /></div>
           <div className="col-md-8 mt-3 mt-md-5"><CityBox onClick={searchNow} img={City2} title="Hanoi" /></div>
         </div>
-        <div className="row mt-md-5">
+        <div className="row">
           <div className="col-md-8 mt-3 mt-md-5"><CityBox onClick={searchNow} img={City3} title="Ho Chi Minh" /></div>
           <div className="col-md-4 mt-3 mt-md-5"><CityBox onClick={searchNow} img={City4} title="Hanoi" /></div>
         </div>
@@ -179,11 +195,11 @@ const Home= () => {
       <Heading5 title="Popular Exclusive Listings In Our Directory" />
       <div className="pd6p">
         <div className="row justify-content-center" >
-        {
-        property.map(x=> <div className="col-12 col-md-6 col-lg-4 my-3 my-md-5">
-         <PropertyCard item={x} img={x.images[0]?x.images[0].image:"https://globalimpactnetwork.org/wp-content/themes/globalimpact/images/no-image-found-360x250.png"} title={x.title?x.title:""} location={`${x.address?x.address:""}`} fetures={x.attributes?x.attributes:[]} price={x.price?x.price:""} type={0} />
-       </div>)
-        }
+          {
+            property.map(x => <div className="col-12 col-md-6 col-lg-4 my-3 my-md-5">
+              <PropertyCard item={x} img={x.images[0] ? x.images[0].image : "https://globalimpactnetwork.org/wp-content/themes/globalimpact/images/no-image-found-360x250.png"} title={x.title ? x.title : ""} location={`${x.address ? x.address : ""}`} fetures={x.attributes ? x.attributes : []} price={x.price ? x.price : ""} type={0} />
+            </div>)
+          }
         </div>
       </div>
     </div>
@@ -234,11 +250,11 @@ const Home= () => {
     {
       //Footer section
     }
-    <div className="pd6p mt-5 pt-5">
+    
       <Footer />
-    </div>
 
-    </LoadingOverlay> 
+    
+  </LoadingOverlay>
 
 }
 export default Home;

@@ -98,8 +98,6 @@ export default function Blogs (){
     </div>
   
     </div>
-    <div className="pd6p mt-5 pt-5">
         <Footer />
-    </div>
     </LoadingOverlay> 
 }

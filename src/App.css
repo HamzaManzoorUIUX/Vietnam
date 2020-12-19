@@ -137,7 +137,18 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 }
-.bgimgcovermarketPlace { 
+.bgimgcovermarketPlace::before{
+  position: absolute;
+  background-color: rgba(34, 34, 34,0.4);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    z-index: 2;
+    content: '';
+}
+.bgimgcovermarketPlace {
+  position: relative; 
   /* The image used */
   background-image: url('../src//images/pages/pexels-chris-goodwin-32870.jpg');
 
@@ -185,6 +196,7 @@ body{
     color: #fbd28d;
     font-weight: bold;
     margin-top: 8%;
+    
 }
 
 .heading-main1{
@@ -327,6 +339,10 @@ width:56%;
   font-weight: bold;
 
 }  
+.css-df17o1{
+position: fixed;
+height: 100vh;
+}
 .toppropertyType-text {
   font-size: 1.2rem;
   color: #b21a1a;
@@ -340,6 +356,7 @@ width:56%;
   font-family: 'Open Sans';
   font-weight: bold;
 }  
+
 .centeredcityoverlayBox{
   display: block;
   position: absolute;
@@ -417,6 +434,16 @@ width:56%;
   }
 }
   @media only screen and (max-width: 768px) {
+    .headtext{
+      font-size: 2rem;  
+    }
+    .headtextchild {
+font-size: 1rem;
+    }
+    .bgimgcovermarketPlace{
+min-height: 350px;
+
+    }
   .flx-none
   {
     display: block;
@@ -707,11 +734,12 @@ margin: 10px!important;
 }
 
 .center-element {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
 }
 
 .headlogin
@@ -752,5 +780,7 @@ display: none;
 {
   align-items:center;
 }
-
+.bg-myDanger{
+background-color: #B31B1A;
+}
 

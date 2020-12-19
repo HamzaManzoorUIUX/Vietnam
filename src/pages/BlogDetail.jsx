@@ -7,7 +7,7 @@ import { FaTwitter } from 'react-icons/fa';
 import { GrLinkedinOption } from 'react-icons/gr';
 import { FaInstagram } from 'react-icons/fa';
 import { useLocation, useHistory } from 'react-router-dom'
-
+import LoadingOverlay from 'react-loading-overlay';
 function BlogDetail(props) {
 
     const location = useLocation();
@@ -23,7 +23,7 @@ function BlogDetail(props) {
         else {
             history.replace('/')
         }
-    });
+    },[]);
     //     return (
     //         blog ? <div>
     //             <div className="bgimgcoverBlogDetail">
@@ -76,7 +76,7 @@ function BlogDetail(props) {
     //         </div>
     //             : <></>
     //     );
-    return (
+    return (<LoadingOverlay>
         <div>
             <div className="bgimgcoverBlogDetail">
                 {//Top Section
@@ -112,7 +112,7 @@ function BlogDetail(props) {
                 </div>
             </div>
             <div className='container text-left'>
-                <div className='detaildecrip'>
+                <div className='detaildecrip mt-3'>
                     <p>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. MaioresLorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores nostrum quo ex, temporibus alias recusandae voluptates beatae inventore repudiandae ea pariatur laborum praesentium quis molestiae, nulla quae. Inventore, recusandae vero?
 </p>
@@ -152,11 +152,9 @@ function BlogDetail(props) {
                     <div className='img40'></div>
                 </div>
             </div>
-            <div className="pd6p mt-5 pt-5">
             <Footer />
-
-            </div>
         </div>
+        </LoadingOverlay>
     );
 }
 

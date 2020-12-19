@@ -17,7 +17,7 @@ import PropertyCard from '../components/home/propertyCard';
 // import { useLocation } from 'react-router-dom'
 import { repository } from '../utiles/repository';
 // import _ from 'lodash';
-// import ImageUploader from 'react-images-upload';
+import {Container} from '@material-ui/core';
 import LoadingOverlay from 'react-loading-overlay';
 
 const GetFilters = (feature, handleFilter) => {
@@ -26,21 +26,21 @@ const GetFilters = (feature, handleFilter) => {
         switch (feature.input_type) {
             case 'dropdown': {
                 return <div className="col-md-3" >
-                <Form.Group controlId="exampleForm.ControlSelect2">
-                    <Form.Label>{feature.name}</Form.Label>
-                    <Form.Control as="select" onChange={(e) => handleFilter({
-                        feature_id: feature.id,
-                        value: e.target.value,
-                        type: feature.input_type,
-                    })}>
-                        {
-                            feature.options ? feature.options.map(x => <option value={x} >{x}</option>) : <></>
-                        }
+                    <Form.Group controlId="exampleForm.ControlSelect2">
+                        <Form.Label>{feature.name}</Form.Label>
+                        <Form.Control as="select" onChange={(e) => handleFilter({
+                            feature_id: feature.id,
+                            value: e.target.value,
+                            type: feature.input_type,
+                        })}>
+                            {
+                                feature.options ? feature.options.map(x => <option value={x} >{x}</option>) : <></>
+                            }
 
-                    </Form.Control>
+                        </Form.Control>
 
-                </Form.Group>
-                {/* <DropdownButton id="category-discovery" title="Real Estate sdas">
+                    </Form.Group>
+                    {/* <DropdownButton id="category-discovery" title="Real Estate sdas">
                     {
                         feature.options ? feature.options.map(x => <Dropdown.Item onClick={() => handleFilter({
                             feature_id: feature.id,
@@ -49,7 +49,7 @@ const GetFilters = (feature, handleFilter) => {
                         })}>{x}</Dropdown.Item>) : <></>
                     }
                 </DropdownButton> */}
-            </div>
+                </div>
             }
             case 'range': {
                 return <div className="col-md-3">
@@ -75,24 +75,24 @@ const GetFilters = (feature, handleFilter) => {
             }
             case 'radio': {
                 return <div className="col-md-3">
-                    
-                <Form.Group>
-                <Form.Label>{feature.name}</Form.Label>
-                {
-                        feature.options ? feature.options.map(x =>
-                            <Form.Check
-                                onChange={() => handleFilter({
-                                    feature_id: feature.id,
-                                    value: x,
-                                    type: feature.input_type,
-                                })}
-                                type="radio"
-                                label={x}
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios2"
-                            />) : <></>
-                    }
-                </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>{feature.name}</Form.Label>
+                        {
+                            feature.options ? feature.options.map(x =>
+                                <Form.Check
+                                    onChange={() => handleFilter({
+                                        feature_id: feature.id,
+                                        value: x,
+                                        type: feature.input_type,
+                                    })}
+                                    type="radio"
+                                    label={x}
+                                    name="formHorizontalRadios"
+                                    id="formHorizontalRadios2"
+                                />) : <></>
+                        }
+                    </Form.Group>
 
                 </div>
 
@@ -100,24 +100,24 @@ const GetFilters = (feature, handleFilter) => {
             case 'checkbox': {
                 return <div className="col-md-3">
                     <Form.Group>
-                <Form.Label>{feature.name}</Form.Label>
-                {
-                        feature.options ? feature.options.map(x =>
-                            <Form.Check
-                            onClick={() => handleFilter({
-                                feature_id: feature.id,
-                                value: x,
-                                type: feature.input_type,
-                            }, "check")}
-                            type="checkbox"
-                            label={x}
-                            name="formHorizontalRadios"
-                            id="formHorizontalRadios2"
-                        />) : <></>
-                    }
-                </Form.Group>
+                        <Form.Label>{feature.name}</Form.Label>
+                        {
+                            feature.options ? feature.options.map(x =>
+                                <Form.Check
+                                    onClick={() => handleFilter({
+                                        feature_id: feature.id,
+                                        value: x,
+                                        type: feature.input_type,
+                                    }, "check")}
+                                    type="checkbox"
+                                    label={x}
+                                    name="formHorizontalRadios"
+                                    id="formHorizontalRadios2"
+                                />) : <></>
+                        }
+                    </Form.Group>
 
-                    
+
 
                 </div>
             }
@@ -129,7 +129,7 @@ const MarketPlace = () => {
 
     // const location = useLocation();
     let [mapData, setMapData] = useState({
-        
+
     });
     let [listings, setlistings] = useState([]);
     let [datalistings, setdatalistings] = useState([]);
@@ -137,7 +137,7 @@ const MarketPlace = () => {
     let [attributes, setattributes] = useState([]);
     let [statesC, setstatesC] = useState([]);
     let [cityC, setcityC] = useState([]);
-    let [display,setdisplay]=useState(true);
+    let [display, setdisplay] = useState(true);
 
     useEffect(() => {
 
@@ -158,7 +158,7 @@ const MarketPlace = () => {
         }
         getData();
 
-    });
+    },[]);
     const handleStateChange = (id) => {
         const stateFound = statesC.find(x => x.id === id);
         if (stateFound) {
@@ -167,7 +167,7 @@ const MarketPlace = () => {
 
         }
     }
-    
+
 
     const handleFilter = (filterObj, range) => {
 
@@ -412,40 +412,44 @@ const MarketPlace = () => {
     }
 
     return <LoadingOverlay
-    active={display}
-    spinner
-    text='Loading...'
+        active={display}
+        spinner
+        text='Loading...'
     ><div className="bgimgcovermarketPlace">
 
 
 
-        {//Top Section
-        }
-        <div className="pd6p navback-color" >
-            <Nav hasback={true} />
-        </div>
-        <div className="pd6p">
-            <div className="pb-8p">
-                <h1 className="headtext">Marketplace</h1>
-                <h5 className="headtextchild mt-3 ">Home/Marketplace</h5>
+            {//Top Section
+            }
+            <div className="pd6p navback-color zIndex3" >
+                <Nav hasback={true} />
             </div>
+            <div className="pd6p zIndex3">
+                <div className="pb-8p">
+                    <h1 className="headtext">Marketplace</h1>
+                    <h5 className="headtextchild mt-3 ">Home/Marketplace</h5>
+                </div>
+            </div>
+
         </div>
 
-    </div>
-
-        <div className="mt-5 pt-3 pd6p">
+     
+        
+  
+    <Container fixed>
+    <div className="mt-5 pt-3">
             <div className="flex-main flx-none flex-mainback pl-4  pd-custm-25 brd ">
                 <div className="flex-main flex-width-55 pt-2 pb-2 wd-md100 brdb-737" ><p className="margin-auto font-weight-600">What</p><input placeholder="For Example Food, Service, Barber, hotel" className="form-control no-border searchBarText" /></div>
-                <div className="flex-main flex-width-22 brdleft brd-cstm-737 pl-5rem hbtn-54 wd-md100 brdb-737 " ><p className="margin-auto font-weight-600">Where</p><input placeholder="Your City" className="form-control no-border searchBarText" /><button className="btn"><BiCurrentLocation /></button></div>
+                <div className="flex-main flex-width-37 brdleft brd-cstm-737 pl-5rem hbtn-54 wd-md100 brdb-737 " ><p className="margin-auto font-weight-600">Where</p><input placeholder="Your City" className="form-control no-border searchBarText" /><button className="btn"><BiCurrentLocation /></button></div>
                 <div className="flex-main flex-width-20 wd-md100 " ><button className="btn btn-info themeBackgroundColor listingbtn w-100 brdleftbtnnone hbtn-54 br-serch-10">Search</button></div>
             </div>
         </div>
-        <div className="footer-root mt-5 pb-4 pd6p">
+    <div className="footer-root mt-5 pb-4 ">
             <p className="ft-size-125"> Search Result for<span className="font-weight-600"> Real Estate</span></p>
 
 
         </div>
-        <div className="footer-root pd6p">
+    <div className="footer-root">
             <div className="dsp-flex align-cntr dsp-flex-wrap">
                 <p className=""> <span className="font-weight-600"> Advance Filters</span></p>
                 <DropdownButton id="category-discoverydst" title="State">
@@ -464,14 +468,14 @@ const MarketPlace = () => {
             </div>
 
         </div>
-
-        <div className="row m-0">
+    
+<div className="row m-0">
             <div className="col-12 col-md-8 col-lg-8">
 
                 <div className="mt-5 pb-5 ">
-                    <div className="revcardss mt-5">
+                    <div className="row mt-5">
 
-                        {listings.map(x => <div className="col-md-6 col-lg-5">
+                        {listings.map(x => <div className="col-md-6">
 
                             <PropertyCard item={x} img={x.images[0] ? x.images[0].image : "https://globalimpactnetwork.org/wp-content/themes/globalimpact/images/no-image-found-360x250.png"} title={x.title ? x.title : ""} location={`${x.address ? x.address : ""}`} fetures={x.attributes ? x.attributes : []} price={x.price ? x.price : ""} type={0} />
 
@@ -497,12 +501,9 @@ const MarketPlace = () => {
                 </div>
             </div>
         </div>
-
-
-        <div className="pd6p mt-5 pt-5">
-            <Footer />
-        </div>
-
-        </LoadingOverlay>
+      
+</Container>
+       <Footer />
+    </LoadingOverlay>
 }
 export default MarketPlace

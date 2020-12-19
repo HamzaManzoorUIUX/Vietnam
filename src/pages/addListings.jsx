@@ -240,10 +240,10 @@ export default function AddListings () {
             //happing Cities
         }
 
-        <div className="pd6p mt-5" >
+        <div className="container mt-5" >
             <Heading5 title="Detailed Information" classes="form-head-main" />
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-8">
                     <Form>
                         <Form.Group className="mt-3" controlId="Description">
                             <Form.Label>Description</Form.Label>
@@ -340,9 +340,7 @@ export default function AddListings () {
             </div>
 
         </div>
-        <div className="pd6p mt-5 pt-5">
-            <Footer />
-        </div>
+        <Footer />
 
     </>
 }
