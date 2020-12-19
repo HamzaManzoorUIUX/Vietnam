@@ -24,7 +24,7 @@ export default function MediaCard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={[classes.root,"revcardd"]} >
+    <Card onClick={props.onClick} className={[classes.root,"revcardd"]} >
 
       <CardActionArea >
         <CardMedia
@@ -34,7 +34,7 @@ export default function MediaCard(props) {
         />
         <CardContent>
         <Typography gutterBottom className="newsavatar">
-        <Avatar>H</Avatar>
+        <Avatar src={props.userImage}/>
        <h5 className="newsavatartitle activty-lbl-cst-name-c2 color-prmry2"> {props.desig}</h5>
          </Typography>
           <Typography gutterBottom className="revsubdesig activty-lbl-cst-name-c1 color-prmry2 mt-1">

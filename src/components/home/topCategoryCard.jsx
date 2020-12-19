@@ -24,9 +24,9 @@ const useStyles = makeStyles({
         marginBottom: 12,
     },
 });
-export default ({img,title}) => {
+export default ({img,title,onClick}) => {
     return <div className="m-2">
-        <CardActionArea>
+        <CardActionArea onClick={onClick}>
         <Card className="cstcardcate1" >
            
            <CardContent className="cstcardcatechild1">

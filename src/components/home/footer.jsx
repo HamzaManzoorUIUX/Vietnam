@@ -3,7 +3,7 @@ import logo from '../../images/logovtq.png'
 import {ImHome} from 'react-icons/im'
 import {FaFacebookSquare,FaTwitterSquare,FaInstagramSquare} from 'react-icons/fa';
 import {BiPaperPlane} from 'react-icons/bi';
-export default () => {
+const footer=() => {
     return (<div className="footer-root flex-row">
         <div className="footer-inner flex-col max-width-446 txt-left">
             <img src={logo} className="logo-footer" />
@@ -41,3 +41,4 @@ CA, USA</a>
         </div>
     </div>)
 }
+export default footer;

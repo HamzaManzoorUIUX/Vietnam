@@ -6,13 +6,32 @@ import Nav from '../components/navbar'
 import { FaFacebookF } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
+import { useLocation, useHistory } from 'react-router-dom'
+import {  useSelector } from 'react-redux'
+
 function PropertyDetails(props) {
+
+    const [item, setitem] = React.useState();
+    const history = useHistory();
+  const Exclusive=useSelector(x=>x.exclusive);
+    React.useEffect(() => {
+
+        if (props.location && props.location.state && props.location.state.item) {
+            setitem(props.location.state.item);
+        }
+        else {
+
+            history.replace('/')
+        }
+    }
+        , []);
+
     return (
         <div>
             <div className="pd6p navback-color" >
-                    <Nav hasback={true} />
-                </div>
-            <PropertyCarosal />
+                <Nav hasback={true} />
+            </div>
+            <PropertyCarosal title={item&& item.title ? item.title : ""} price={item&& item.price ? item.price : ""} description={item&&item.description ? item.description : ""} />
             <div className="container text-left mt-5">
                 <div className="row">
                     <div className="col-md-8">
@@ -21,11 +40,8 @@ function PropertyDetails(props) {
                                 Description
                 </h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, vel illo accusamus numquam consequatur fuga doloremque tempore molestias nulla deleniti expedita aperiam at ipsum vitae, dicta, sint soluta cupiditate iure.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, vel illo accusamus numquam consequatur fuga doloremque tempore molestias nulla deleniti expedita aperiam at ipsum vitae, dicta, sint soluta cupiditate iure.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, vel illo accusamus numquam consequatur fuga doloremque tempore molestias nulla deleniti expedita aperiam at ipsum vitae, dicta, sint soluta cupiditate iure.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, vel illo accusamus numquam consequatur fuga doloremque tempore molestias nulla deleniti expedita aperiam at ipsum vitae, dicta, sint soluta cupiditate iure.
-                </p>
+                                {item&&item.description ? item.description : ""}
+                            </p>
 
                         </div>
                         <div className='mt-3'>
@@ -33,31 +49,17 @@ function PropertyDetails(props) {
                                 Property Details
             </h3>
                             <div className='d-flex flex-wrap justify-content-between'>
-                                <div className='propertyDec'>
-                                    <div>
-                                        Bedroom:
+                              
+                              {
+                                  item&& item.attributes?item.attributes.map(x=>  <div className='propertyDec'>
+                                  <div>
+                                      {x.feature.name}:
+                                  </div>
+                                      {x.value}
+                                  </div>):<></>
+                              }
+                              
                                     </div>
-                                        3
-                                    </div>
-                                <div className='propertyDec'>
-                                    <div>
-                                        Rooms:
-                                    </div>
-                                        3
-                                    </div>
-                                <div className='propertyDec'>
-                                    <div>
-                                        size:
-                                    </div>
-                                        3
-                                    </div>
-                                <div className='propertyDec'>
-                                    <div>
-                                        orienten:
-                                    </div>
-                                        3
-                                    </div>
-                            </div>
 
                         </div>
                         <div className='mt-3'>
@@ -83,20 +85,20 @@ function PropertyDetails(props) {
                     </div>
                     <div className="col-md-4">
                         <div className='rounded border p-2'>
-<h3>
-    Location
+                            <h3>
+                                Location
 </h3>
-<div className='myMap'>
+                            <div className='myMap'>
 
-</div>
+                            </div>
                         </div>
                         <h4 className="mt-3">
                             Share
                         </h4>
                         <div className="mySharLinks">
-<FaFacebookF/>
-<FaTwitter/>
-<FaInstagram/>
+                            <FaFacebookF />
+                            <FaTwitter />
+                            <FaInstagram />
                         </div>
                     </div>
                 </div>
@@ -106,19 +108,21 @@ function PropertyDetails(props) {
 </h3>
                     <div>
                         <div className="row">
-                            <div className="col-md-4">
-                                <PropertyCard />
-                            </div>
-                            <div className="col-md-4">
-                                <PropertyCard />
-                            </div>
-                            <div className="col-md-4">
-                                <PropertyCard />
-                            </div>
+       
+                           {Exclusive.map(x=> 
+                           {
+                               console.log(x,"sssssssss")
+                               return <div className="col-md-4">
+                               <PropertyCard item={x} img={x.images[0]?x.images[0].image:"https://globalimpactnetwork.org/wp-content/themes/globalimpact/images/no-image-found-360x250.png"} title={x.title?x.title:""} location={`${x.address?x.address:""}`} fetures={x.attributes?x.attributes:[]} price={x.price?x.price:""} type={0} />
+                               </div>
+                           }
+                           )}
                         </div>
                     </div>
                 </div>
-<Footer/>
+            </div>
+            <div className="pd6p mt-5 pt-5">
+                <Footer />
             </div>
         </div>
     );

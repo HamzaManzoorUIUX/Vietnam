@@ -1,4 +1,5 @@
 import React from 'react';
-export default ({title})=>{
+const Heading1= ({title})=>{
 return <h1 className="heading-main1">{title}</h1>
 }
+export default Heading1;

@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 import './styles/hamza.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
 
-import Home from './pagse/home';
-import Listings from './pagse/addListings'
-import Blogs from './pagse/blogs';
-import MarketPlace from './pagse/marketplace'
-import Discovery from './pagse/discover';
-import Login from './pagse/login'
-import Signup from './pagse/signup'
-import BlogDetail from './pagse/BlogDetail'
-import PropertyDetails from './pagse/PropertyDetails'
+
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import {store,perssistor} from './redux/store'
+import Main from './components/home/mainApp'
 function App() {
-  return (
+    // const innerRef = useRef(); 
+ 
+    return (
+    <Provider store={ store}>
+    <PersistGate persistor={perssistor}>
     <div className="App">
-     <Blogs/>
-    </div>
-  );
+    {/* <Location onError={(error) => console.log(error)} ref={innerRef} /> */}
+        <Main/>
+   </div>
+   
+    </PersistGate>
+    </Provider>   );
 }
 
 export default App;

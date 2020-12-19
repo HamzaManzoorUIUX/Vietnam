@@ -136,20 +136,8 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
 }
-.bgimgcovermarketPlace::before{
-  position: absolute;
-  background-color: rgba(34, 34, 34,0.4);
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-    z-index: 2;
-    content: '';
-} 
 .bgimgcovermarketPlace { 
-  position: relative;
   /* The image used */
   background-image: url('../src//images/pages/pexels-chris-goodwin-32870.jpg');
 
@@ -553,7 +541,6 @@ align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
 }
 
 .newscardss {
@@ -694,7 +681,7 @@ margin: 10px!important;
 }
 #category-discoverydst
 {
-  background-color: #c9cbca;
+  background-color: #5d9f91;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 20px;
@@ -745,4 +732,25 @@ margin: 10px!important;
   max-width: 400px;
     width: 350px!important;
 }
+
+#overlay {
+  width: 100%;
+  height: 100%;
+  display:table;
+  background: rgba(0, 0, 0, 0.5);
+}
+#overlay #ltv {
+ display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+}
+.cstclasssad23
+{
+display: none;
+}
+.align-cntr
+{
+  align-items:center;
+}
+
 

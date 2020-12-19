@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
-function PropertyCarosal(props) {
+function PropertyCarosal({title,description,price}) {
   
 
     return (
@@ -11,10 +11,10 @@ function PropertyCarosal(props) {
                     <div className='mybadge'>
                         Rent
                     </div>
-                    <h3 className='CarouselHeading'>First slide label</h3>
-                    <p className='CarouselParagraph'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3 className='CarouselHeading'>{title?title:""}</h3>
+                    <p className='CarouselParagraph'>{description?description.slice(0,50)+"...":""}</p>
                <h3>
-                   $320,000
+                   ${price}
                </h3>
                 </Carousel.Caption>
             </Carousel.Item>
@@ -22,13 +22,13 @@ function PropertyCarosal(props) {
             <div className='Carouseltwo'></div>
 
             <Carousel.Caption>
-                    <div className='mybadge'>
+            <div className='mybadge'>
                         Rent
                     </div>
-                    <h3 className='CarouselHeading'>First slide label</h3>
-                    <p className='CarouselParagraph'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3 className='CarouselHeading'>{title?title:""}</h3>
+                    <p className='CarouselParagraph'>{description?description.slice(0,50)+"...":""}</p>
                <h3>
-                   $320,000
+                   ${price}
                </h3>
                 </Carousel.Caption>
            
@@ -36,13 +36,13 @@ function PropertyCarosal(props) {
             <Carousel.Item>
             <div className='Carouselthree'></div>
             <Carousel.Caption>
-                    <div className='mybadge'>
+            <div className='mybadge'>
                         Rent
                     </div>
-                    <h3 className='CarouselHeading'>First slide label</h3>
-                    <p className='CarouselParagraph'>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3 className='CarouselHeading'>{title?title:""}</h3>
+                    <p className='CarouselParagraph'>{description?description.slice(0,50)+"...":""}</p>
                <h3>
-                   $320,000
+                   ${price}
                </h3>
                 </Carousel.Caption>
            
