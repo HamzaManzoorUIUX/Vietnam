@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading5 from './heading5';
+// import Heading5 from './heading5';
 import { RiMapPinLine } from 'react-icons/ri'
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useHistory } from "react-router-dom";
@@ -7,12 +7,12 @@ import { useHistory } from "react-router-dom";
 const FeatureFun = ({ name, val }) => {
     return <h5 className="property-location-p mr-4">{name}:{val}</h5>
 }
-export default ({ item,img, title, location, fetures, price, type }) => {
+export default function PropertyCard ({ item,img, title, location, fetures, price, type }) {
     console.log(img);
     const history = useHistory();
 
     const PriceCom = () => {
-        if (type == 1) {
+        if (type === 1) {
             return price;
         }
         else {
@@ -22,7 +22,7 @@ export default ({ item,img, title, location, fetures, price, type }) => {
     return (<CardActionArea onClick={()=>history.push("/property",{item:item})}><div>
         <div className="containercity">
             <div className="propertyTypeBar ml-4"><h5 className="toppropertyType-text">
-                {type == 1 ? "Sale" : "Rent"}
+                {type === 1 ? "Sale" : "Rent"}
             </h5></div>
             <div className="centeredcityoverlayBox"></div>
 

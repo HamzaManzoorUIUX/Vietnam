@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import Heading5 from '../components/home/heading5';
-import { Form, Button } from 'react-bootstrap'
+// import { Form, Button } from 'react-bootstrap'
 import Footer from '../components/home/footer'
 import Nav from '../components/navbar';
 import News from '../components/home/newscard'
@@ -11,7 +11,7 @@ import {setBlogs} from '../redux/actionMethodes/listings/index'
 import {useDispatch} from 'react-redux';
 import LoadingOverlay from 'react-loading-overlay';
 
-export default () => {
+export default function Blogs (){
     const blogs=useSelector(x=>x.blogs);
     let [pageblogs,setpageblogs]=useState([]);
     let [display,setdisplay]=useState(false);
@@ -26,7 +26,7 @@ export default () => {
             if(blogs.length<=0)
             {
               const {data,status}  =await repository.get_blogs().then(x=>x).then(x=>x);
-              if(status==200)
+              if(status===200)
               { 
                 
                 dispatch(setBlogs(data.response.blogs));

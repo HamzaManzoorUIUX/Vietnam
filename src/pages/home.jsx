@@ -9,7 +9,7 @@ import City1 from '../images/cities/city1.jpg'
 import City2 from '../images/cities/city2.jpg'
 import City3 from '../images/cities/city3.jpg'
 import City4 from '../images/cities/city4.jpg'
-import PropertyImg1 from '../images/property/property1.jpg'
+// import PropertyImg1 from '../images/property/property1.jpg'
 import PropertyCard from '../components/home/propertyCard'
 import ActivityCard from '../components/home/activityCard';
 import img1 from '../images/activityImages/1.jpg';
@@ -22,14 +22,14 @@ import { repository } from '../utiles/repository'
 import { setCategories, setBlogs ,setExclusiveProducts} from '../redux/actionMethodes/listings';
 import { useHistory } from "react-router-dom";
 import NavBar from '../components/navbar'
-import _ from 'lodash';
+// import _ from 'lodash';
 import LoadingOverlay from 'react-loading-overlay';
 
-export default () => {
+const Home= () => {
   const categories = useSelector(x => x.categories);
   const blogs = useSelector(x => x.blogs);
   const exclusive = useSelector(x => x.exclusive);
-  const userLocation=(x=>x.userLocation);
+  // const userLocation=(x=>x.userLocation);
 
   //0 for city 1 for town
   //big radius small radius
@@ -45,7 +45,7 @@ export default () => {
 
       if (categories.length <= 0) {
         const { data, status } = await repository.getCategories().then(x => x).then(x => x);
-        if (status == 200) {
+        if (status === 200) {
 
           dispatch(setCategories(data.response.categories));
         }
@@ -53,7 +53,7 @@ export default () => {
       }
       if (blogs.length <= 0) {
         const { data, status } = await repository.get_blogs().then(x => x).then(x => x);
-        if (status == 200) {
+        if (status === 200) {
 
           dispatch(setBlogs(data.response.blogs));
         }
@@ -62,7 +62,7 @@ export default () => {
       if(exclusive.length<=0)
       {
         const { data, status } = await repository.getexclusive().then(x => x).then(x => x);
-        if (status == 200) {
+        if (status === 200) {
           dispatch(setExclusiveProducts(data.response.products));
       // const ex=  _.sample(data.response.products,3);
       // console.log(ex,"sds")  
@@ -79,12 +79,12 @@ export default () => {
 
     }
     getData();
-  }, []);
+  });
   const geoDecode = async () => {
     setdisplay(true);
 
     const { data, status } = await repository.geoDecode(24.8605517, 67.0633579).then(x => x).then(x => x);
-    if (status == 200) {
+    if (status === 200) {
       if (data && data.address && data.address.city) {
         
         setLocationGet({location:data.address.city,type:0});
@@ -116,7 +116,7 @@ export default () => {
       //category_id:''
     }
     const {  status ,data} = await repository.productsFilter(dataFilter).then(x => x).then(x => x);
-    if(status==200 && data.status==200 &&  data.success==true)
+    if(status===200 && data.status===200 &&  data.success===true)
     {
       history.push("/discover", {data:{...dataFilter,latitude:52.5487429714954,longitude:-1.81602098644987},response:data.response});
     }
@@ -241,3 +241,4 @@ export default () => {
     </LoadingOverlay> 
 
 }
+export default Home;

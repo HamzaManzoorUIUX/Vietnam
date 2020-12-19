@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import Heading5 from '../components/home/heading5';
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import Footer from '../components/home/footer'
 import Nav from '../components/navbar';
 // import newsimg1 from '../images/news/4.jpg';
@@ -15,7 +15,7 @@ import { BiCurrentLocation } from 'react-icons/bi';
 import PropertyCard from '../components/home/propertyCard';
 import { useLocation} from 'react-router-dom'
 import { repository } from '../utiles/repository';
-import _ from 'lodash';
+// import _ from 'lodash';
 // import ImageUploader from 'react-images-upload';
 import LoadingOverlay from 'react-loading-overlay';
 
@@ -26,7 +26,7 @@ const Map = ReactMapboxGl({
 // const position = [51.505, -0.09]
 
 
-const feat = [{ name: "Bed", val: "4" }, { name: "Bath", val: "1" }, { name: "Sqft", val: "200" }];
+// const feat = [{ name: "Bed", val: "4" }, { name: "Bath", val: "1" }, { name: "Sqft", val: "200" }];
 
 const GetFilters = (feature, handleFilter) => {
 
@@ -128,12 +128,13 @@ const GetFilters = (feature, handleFilter) => {
                     
 
                 </div>
-                break;
             }
+            default:
+                return 0;
         }
 }
 
-export default () => {
+const Discover = () => {
     const location = useLocation();
     let [mapData, setMapData] = useState({
         name: '',
@@ -150,7 +151,7 @@ export default () => {
     let [display,setdisplay]=useState(false);
     let [listings, setlistings] = useState([]);
     let [datalistings, setdatalistings] = useState([]);
-    let [filters, setfilters] = useState([]);
+    // let [filters, setfilters] = useState([]);
     let [attributes, setattributes] = useState([]);
     let [statesC, setstatesC] = useState([]);
     let [cityC, setcityC] = useState([]);
@@ -177,7 +178,7 @@ export default () => {
 
             const getData = async () => {
                 const { status, data } = await repository.productsFilter({}).then(x => x).then(x => x);
-                if (status == 200 && data.status == 200 && data.success == true) {
+                if (status === 200 && data.status === 200 && data.success === true) {
                     if (data.response && data.response.products && data.response.attributes) {
                         setlistings(data.response.products);
                         setdatalistings(data.response.products);
@@ -192,10 +193,10 @@ export default () => {
         }
         setdisplay(false);
 
-    }, []);
+    },[location, mapData]);
 
     const handleStateChange = (id) => {
-        const stateFound = statesC.find(x => x.id == id);
+        const stateFound = statesC.find(x => x.id === id);
         if (stateFound) {
             if (stateFound.cities)
                 setcityC(stateFound.cities)
@@ -206,25 +207,25 @@ export default () => {
     const handleFilter = (filterObj, range) => {
 
         let oldFilters = mapData.attributes;
-        let foundFilter = oldFilters.find(x => x.feature_id == filterObj.feature_id);
+        let foundFilter = oldFilters.find(x => x.feature_id === filterObj.feature_id);
 
         if (foundFilter) {
-            if (foundFilter.type == "checkbox") {
-                let checkBoxValueExsist = foundFilter.value.find(x => x == filterObj.value)
+            if (foundFilter.type === "checkbox") {
+                let checkBoxValueExsist = foundFilter.value.find(x => x === filterObj.value)
                 if (checkBoxValueExsist) {
-                    foundFilter.value = foundFilter.value.filter(x => x != checkBoxValueExsist)
+                    foundFilter.value = foundFilter.value.filter(x => x !== checkBoxValueExsist)
                 }
                 else {
                     foundFilter.value.push(filterObj.value);
                 }
 
             }
-            else if (foundFilter.type == "range") {
-                if (range == 0)//minimum
+            else if (foundFilter.type === "range") {
+                if (range === 0)//minimum
                 {
                     foundFilter.value[0] = parseInt(filterObj.value);
                 }
-                else if (range == 1) {
+                else if (range === 1) {
                     foundFilter.value[1] = parseInt(filterObj.value);
                 }
             }
@@ -232,15 +233,15 @@ export default () => {
                 foundFilter.value = filterObj.value;
         }
         else {
-            if (range == 0 || range == 1) {
-                if (range == 0) {
+            if (range === 0 || range === 1) {
+                if (range === 0) {
                     oldFilters.push({ ...filterObj, value: [parseInt(filterObj.value), mapData.max] });
 
                 }
-                else if (range == 1)
+                else if (range === 1)
                     oldFilters.push({ ...filterObj, value: [0, parseInt(filterObj.value)] });
             }
-            else if (range == "check") {
+            else if (range === "check") {
                 oldFilters.push({ ...filterObj, value: [filterObj.value] });
             }
 
@@ -250,7 +251,7 @@ export default () => {
         setMapData({ ...mapData, attributes: oldFilters });
 
 
-        let newdatalistings = datalistings;
+        // let newdatalistings = datalistings;
         let findProducts = [];
 
 
@@ -451,7 +452,7 @@ export default () => {
     ><div className="bgimgcovermap">
         <Nav hasback={true} />
         <Map
-            style="mapbox://styles/mapbox/streets-v8"
+            style={"mapbox://styles/mapbox/streets-v8"}
             containerStyle={{
                 height: '400px',
                 width: '100%'
@@ -505,3 +506,4 @@ export default () => {
         </div>
         </LoadingOverlay> 
 }
+export default Discover;

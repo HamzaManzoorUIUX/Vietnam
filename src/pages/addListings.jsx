@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Heading5 from '../components/home/heading5';
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import Footer from '../components/home/footer'
 import Nav from '../components/navbar'
-import { setCategories, setBlogs } from '../redux/actionMethodes/listings';
+import { setCategories } from '../redux/actionMethodes/listings';
 import { useSelector, useDispatch } from 'react-redux'
 import { repository } from '../utiles/repository'
-import { Dropdown, DropdownButton } from 'react-bootstrap'
+// import { Dropdown, DropdownButton } from 'react-bootstrap'
 import ImageUploader from 'react-images-upload';
 
 
-const feat = [{ name: "Bed", val: "4" }, { name: "Bath", val: "1" }, { name: "Sqft", val: "200" }];
+// const feat = [{ name: "Bed", val: "4" }, { name: "Bath", val: "1" }, { name: "Sqft", val: "200" }];
 
 
 const GetFilters = (feature, handleFilter) => {
@@ -113,13 +113,15 @@ const GetFilters = (feature, handleFilter) => {
                     
 
                 </div>
-                break;
+               
             }
+            default:
+            return 0
         }
 }
 
 
-export default () => {
+export default function AddListings () {
     const categories = useSelector(x => x.categories);
     const dispatch = useDispatch();
     const [subCategory, setsubCategory] = useState([]);
@@ -140,7 +142,7 @@ export default () => {
         max: 10000
     });
     const handleCategoryChange = (id) => {
-        let subCate = categories.find(x => x.id == id);
+        let subCate = categories.find(x => x.id === id);
         if (subCate) {
             setsubCategory(subCate.sub_categories ? subCate.sub_categories : []);
             setfilters(subCate.attributes ? subCate.attributes : []);
@@ -153,7 +155,7 @@ export default () => {
         const getData = async () => {
             if (categories.length <= 0) {
                 const { data, status } = await repository.getCategories().then(x => x).then(x => x);
-                if (status == 200) {
+                if (status === 200) {
                     console.log(data.response.categories);
                     dispatch(setCategories(data.response.categories));
                     setsubCategory(data.response.categories[0].sub_categories ? data.response.categories[0].sub_categories : []);
@@ -173,24 +175,24 @@ export default () => {
     const handleFilter = (filterObj, range) => {
 
         let oldFilters = mapData.attributes;
-        let foundFilter = oldFilters.find(x => x.feature_id == filterObj.feature_id);
+        let foundFilter = oldFilters.find(x => x.feature_id === filterObj.feature_id);
         if (foundFilter) {
-            if (foundFilter.type == "checkbox") {
-                let checkBoxValueExsist = foundFilter.value.find(x => x == filterObj.value)
+            if (foundFilter.type === "checkbox") {
+                let checkBoxValueExsist = foundFilter.value.find(x => x === filterObj.value)
                 if (checkBoxValueExsist) {
-                    foundFilter.value = foundFilter.value.filter(x => x != checkBoxValueExsist)
+                    foundFilter.value = foundFilter.value.filter(x => x !== checkBoxValueExsist)
                 }
                 else {
                     foundFilter.value.push(filterObj.value);
                 }
 
             }
-            else if (foundFilter.type == "range") {
-                if (range == 0)//minimum
+            else if (foundFilter.type === "range") {
+                if (range === 0)//minimum
                 {
                     foundFilter.value[0] = parseInt(filterObj.value);
                 }
-                else if (range == 1) {
+                else if (range === 1) {
                     foundFilter.value[1] = parseInt(filterObj.value);
                 }
             }
@@ -198,15 +200,15 @@ export default () => {
                 foundFilter.value = filterObj.value;
         }
         else {
-            if (range == 0 || range == 1) {
-                if (range == 0) {
+            if (range === 0 || range === 1) {
+                if (range === 0) {
                     oldFilters.push({ ...filterObj, value: [parseInt(filterObj.value), mapData.max] });
 
                 }
-                else if (range == 1)
+                else if (range === 1)
                     oldFilters.push({ ...filterObj, value: [0, parseInt(filterObj.value)] });
             }
-            else if (range == "check") {
+            else if (range === "check") {
                 oldFilters.push({ ...filterObj, value: [filterObj.value] });
             }
 

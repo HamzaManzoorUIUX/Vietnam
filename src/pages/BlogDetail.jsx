@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/home/footer'
 import Nav from '../components/navbar'
-import { makeStyles } from "@material-ui/core";
+// import { makeStyles } from "@material-ui/core";
 import { FaFacebookF } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { GrLinkedinOption } from 'react-icons/gr';

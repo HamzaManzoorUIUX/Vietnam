@@ -6,7 +6,7 @@ import Nav from '../components/navbar'
 import { FaFacebookF } from 'react-icons/fa';
 import { FaTwitter } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
-import { useLocation, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {  useSelector } from 'react-redux'
 
 function PropertyDetails(props) {

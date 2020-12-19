@@ -5,7 +5,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import imgOne from '../images/property/property1.jpg'
+// import imgOne from '../images/property/property1.jpg'
 import { GoLocation } from 'react-icons/go';
 import { useHistory } from "react-router-dom";
 
@@ -39,7 +39,7 @@ export default function PropertyCard({ item,img, title, location, fetures, price
   const history = useHistory();
 
   const PriceCom = () => {
-      if (type == 1) {
+      if (type === 1) {
           return price;
       }
       else {
