@@ -70,7 +70,7 @@ export default function PropertyCard({ item,img, title, location, fetures, price
             <GoLocation className='mr-2'/>
             {location}
           </Typography>
-        <div className='text-secondary d-flex justify-content-between w-75'>
+        <div className='text-secondary d-flex justify-content-between'>
         {fetures.map(x =><div>{x.feature.name}:{x.value}</div>)}
         </div>
 </div>

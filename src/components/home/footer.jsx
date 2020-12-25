@@ -2,10 +2,11 @@ import React from 'react';
 import logo from '../../images/logovtq.png'
 import {ImHome} from 'react-icons/im'
 import {FaFacebookSquare,FaTwitterSquare,FaInstagramSquare} from 'react-icons/fa';
+import Fade from 'react-reveal/Fade';
 import {BiPaperPlane} from 'react-icons/bi';
 const footer=() => {
     return (
-    <>
+    <Fade bottom>
     <div className="pd6p mt-5 pt-5">
     <div className="footer-root flex-row">
         <div className="footer-inner flex-col max-width-446 txt-left">
@@ -44,7 +45,7 @@ CA, USA</a>
         </div>
     </div>
     </div>
-    <div className='pd6p d-flex flex-column flex-md-row justify-content-between align-items-center bg-myDanger py-3 text-white'>
+    <div className='pd6p d-flex flex-column flex-md-row justify-content-between align-items-center bg-myDanger py-3 text-white mt-3'>
     <div>
         &copy; 2020 VietQ. All Rights Reserved
     </div>
@@ -58,7 +59,7 @@ CA, USA</a>
         </div>
     </div>
         </div>
-        </>
+        </Fade>
     )
 }
 export default footer;

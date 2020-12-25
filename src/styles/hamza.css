@@ -87,25 +87,12 @@ width: 40%;
     }
     .CarouselOne{
       background-image: url('../../src//images/news/4.jpg');
-    background-size: contain;
+    background-size: cover;
     background-repeat: repeat-x;
 width: 100%;
 height: 450px;
     }
-    .Carouseltwo{
-      background-image: url('../../src//images/news/5.jpg');
-      background-size: contain;
-      background-repeat: repeat-x;
-width: 100%;
-height: 450px;
-    }
-    .Carouselthree{
-      background-image: url('../../src//images/news/6.jpg');
-      background-size: contain;
-      background-repeat: repeat-x;
-width: 100%;
-height: 450px;
-    }
+    
     .carousel-caption{
       left: 10% !important;
       text-align: left !important;
@@ -147,6 +134,7 @@ height: 450px;
   width: 33%;
   margin-top: .5rem;
   margin-bottom: .5rem;
+  
 }
 .propertyDec>div{
 font-weight: bold;
@@ -172,6 +160,11 @@ font-size: 1.25rem !important;
   position: relative;
   z-index: 3;
 }
+.zIndex4{
+  position: relative;
+  z-index: 4;
+}
+
 .ml-n5, .mx-n5 {
   margin-left: -3rem!important;
 
@@ -183,9 +176,22 @@ font-size: 1.25rem !important;
 .max-width{
   width: 100% !important;
 }
+.footer-Item{
+  font-size: 1rem!important;
+  font-weight: 300!important;
+  color: #717070;
+  cursor: pointer;
+  margin-bottom: 0.6rem;
+}
 @media(max-width:768px){
   .ml-n5, .mx-n5 {
     margin-left: auto!important;
   
   } 
+}
+@media(max-width:500px){
+  .propertyDec{
+    width: 100%;
+    
+  }
 }

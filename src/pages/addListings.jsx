@@ -226,13 +226,13 @@ export default function AddListings () {
 
 
 
-        <div className="pd6p navback-color zIndex3" >
+        <div className="pd6p navback-color zIndex4" >
             <Nav hasback={true} />
         </div>
         <div className="pd6p zIndex3">
             <div className="pb-8p">
-                <h1 className="headtext">Add Listing</h1>
-                <h5 className="headtextchild mt-3 ">Home/Add Listing</h5>
+                <h1 className="headtext mb-0">Add Listing</h1>
+                <h5 className="headtextchild ">Home/Add Listing</h5>
             </div>
         </div>
     </div>

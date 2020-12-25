@@ -31,7 +31,7 @@ function PropertyDetails(props) {
             <div className="pd6p navback-color" >
                 <Nav hasback={true} />
             </div>
-            <PropertyCarosal title={item&& item.title ? item.title : ""} price={item&& item.price ? item.price : ""} description={item&&item.description ? item.description : ""} />
+            <PropertyCarosal Exclusive={Exclusive} title={item&& item.title ? item.title : ""} price={item&& item.price ? item.price : ""} description={item&&item.description ? item.description : ""} />
             <div className="container text-left mt-5">
                 <div className="row">
                     <div className="col-md-8">
@@ -66,7 +66,7 @@ function PropertyDetails(props) {
                             <h3>
                                 Facilities
                             </h3>
-                            <div className='d-flex flex-wrap justify-content-between'>
+                            <div className='d-flex flex-wrap flex-column flex-row justify-content-between'>
                                 <div className='propertyDec'>
                                     Air Conditioning
                                     </div>
